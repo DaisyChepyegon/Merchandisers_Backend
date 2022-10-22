@@ -22,7 +22,6 @@ class ManagersController < ApplicationController
     # render json: manager, status: :created, location: manager
 
     manager = Manager.create!(manager_params)
-
     if manager.valid?
         session[:admin_id] = manager.id
         render json: {
