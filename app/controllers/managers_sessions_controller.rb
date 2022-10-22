@@ -1,0 +1,2 @@
+class ManagersSessionsController < ApplicationController
+end
