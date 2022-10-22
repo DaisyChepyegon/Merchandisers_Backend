@@ -3,6 +3,23 @@ Rails.application.routes.draw do
   resources :merchandisers
   resources :managers
   resources :route_plans
+
+  ## managers signup routes
+  post '/signup', to: 'managers#create'
+
+  ## merchandisers signup routes
+  post '/signup', to: 'merchandisers#create'
+
+  ## managers sessions routes
+   post '/login', to: 'managers_sessions#create'
+   delete '/logout', to: 'managers_sessions#destroy'
+   get '/logged_in', to: 'managers_sessions#is_logged_in?'
+ 
+   ## merchandisers sessions routes
+   post '/login', to: 'merchandisers_sessions#create'
+   delete '/logout', to: 'merchandisers_sessions#destroy'
+   get '/logged_in', to: 'merchandisers_sessions#is_logged_in?'
+   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
