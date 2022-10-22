@@ -5,7 +5,6 @@ class MerchandisersController < ApplicationController
    # GET /merchandisers
    def index
     merchandisers = Merchandiser.all
-
     render json: merchandisers
   end
 
@@ -18,7 +17,6 @@ class MerchandisersController < ApplicationController
 
   # POST /merchandisers
   def create
-
     merchandiser = Merchandiser.create!(merchandiser_params)
     if  merchandiser.valid?
         session[:admin_id] =  merchandiser.id
@@ -33,8 +31,6 @@ class MerchandisersController < ApplicationController
         }
     end
   end
-
-
 
 
   # PATCH/PUT /merchandisers/1
@@ -60,7 +56,7 @@ class MerchandisersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def merchandiser_params
-      params.require(:merchandiser).permit(:username, :email,  :password, :user_id, :password_confirmation)
+      params.require(:merchandiser).permit(:username, :email,  :password, :password_confirmation)
     end
 
     def render_not_found_response
