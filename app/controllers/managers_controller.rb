@@ -21,18 +21,12 @@ class ManagersController < ApplicationController
     # manager = Manager.create!(manager_params)
     # render json: manager, status: :created, location: manager
 
-    manager = Manager.create!(manager_params)
+    manager = Manager.create(manager_params)
     if manager.valid?
-        session[:admin_id] = manager.id
-        render json: {
-            status: :created,
-            manager: manager
-        }
+        create_manager_session(manager.id)
+        app_response(status_code: 201, message: "Account created successfully", body: manager)
     else
-        render json: {
-            status: 500,
-            errors: manager.errors.full_messages
-        }
+        app_response(status_code: 422, message: "Invalid input", body: manager.errors.full_messages)
     end
 
   end
@@ -55,6 +49,10 @@ class ManagersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_manager
       Manager.find(params[:id])
+    end
+
+    def create_manager_session(manager.id)
+      session[:manager_id] ||= manager_id
     end
 
     # Only allow a list of trusted parameters through.
