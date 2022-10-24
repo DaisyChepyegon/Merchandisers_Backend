@@ -7,7 +7,7 @@ class CreateMerchandisers < ActiveRecord::Migration[7.0]
       t.string :email
       t.string :password_digest
       t.string :location
-      t.references :route_plan, null: false, foreign_key: true
+      # t.references :route_plan, null: false, foreign_key: true
 
       t.timestamps
     end

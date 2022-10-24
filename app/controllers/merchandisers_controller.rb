@@ -51,7 +51,7 @@ class MerchandisersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def merchandiser_params
 
-      params.permit(:username, :email,  :password, :phone_number, :image, :location, :route_plan_id)
+      params.permit(:username, :email,  :password, :phone_number, :image, :location)
     end
 
     def render_not_found_response
