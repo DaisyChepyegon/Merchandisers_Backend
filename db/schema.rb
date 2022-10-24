@@ -32,21 +32,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_123059) do
     t.string "email"
     t.string "password_digest"
     t.string "location"
-    t.bigint "route_plan_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["route_plan_id"], name: "index_merchandisers_on_route_plan_id"
   end
 
   create_table "outlets", force: :cascade do |t|
     t.string "name"
     t.string "location"
-    t.bigint "route_plan_id", null: false
-    t.bigint "merchandiser_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["merchandiser_id"], name: "index_outlets_on_merchandiser_id"
-    t.index ["route_plan_id"], name: "index_outlets_on_route_plan_id"
   end
 
   create_table "route_plans", force: :cascade do |t|
@@ -66,7 +60,4 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_123059) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "merchandisers", "route_plans"
-  add_foreign_key "outlets", "merchandisers"
-  add_foreign_key "outlets", "route_plans"
 end
