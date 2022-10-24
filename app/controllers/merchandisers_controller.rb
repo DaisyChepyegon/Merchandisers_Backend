@@ -23,7 +23,7 @@ class MerchandisersController < ApplicationController
     merchandiser = Merchandiser.create!(merchandiser_params)
     # render json: merchandiser, status: :created
     if  merchandiser.valid?
-        session[:admin_id] =  merchandiser.id
+        session[:merchandiser_id] =  merchandiser.id
         render json: {
             status: :created,
             merchandiser: merchandiser
