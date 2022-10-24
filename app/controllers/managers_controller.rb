@@ -23,7 +23,7 @@ class ManagersController < ApplicationController
 
     manager = Manager.create(manager_params)
     if manager.valid?
-        create_manager_session(manager.id)
+        create_manager_session(manager_id)
         app_response(status_code: 201, message: "Account created successfully", body: manager)
     else
         app_response(status_code: 422, message: "Invalid input", body: manager.errors.full_messages)
@@ -51,7 +51,7 @@ class ManagersController < ApplicationController
       Manager.find(params[:id])
     end
 
-    def create_manager_session(manager.id)
+    def create_manager_session(manager_id)
       session[:manager_id] ||= manager_id
     end
 
