@@ -1,19 +1,16 @@
 class ManagersSessionsController < ApplicationController
     def create
-        manager = Manager.find_by(email: session_params_manager[:email])
-        if manager&.authenticate(session_params_manager[:password])
+      manager = Manager.find_by(email: params[:email])
+              
+      if manager &.authenticate(params[:password])
           session[:manager_id] = manager.id
-          render json: {
-            logged_in: true,
-            manager: manager
-          }
-        else
-          render json: { 
-            status: 401,
-            errors: ['no such Manager', 'verify credentials and try again or signup']
-          }
-        end
+          
+          # render json: manager, status: :created
+          app_response(message: "Log in success", body: manager)
+      else
+          app_response(status_code: 401, message: "Invalid username or password")
       end
+    end
     
       def is_logged_in?
         if logged_in_manager? && current_manager
@@ -34,14 +31,14 @@ class ManagersSessionsController < ApplicationController
         render json: {
             status: 200,
             logged_out: true
-            message: 'Log out successfully'
+            # message: 'Log out successfully'
         }
       end
     
       private
-      def session_params_manager
-       params.require(:manager).permit(:username, :email, :password)
-      end
+      def session_params
+        params.permit(:email, :password)
+    end
 
       def delete_manager_session
         session.delete :manager_id
