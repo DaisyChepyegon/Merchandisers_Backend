@@ -29,4 +29,7 @@ RoutePlan.create(name: "routeB", month: "Feb")
 RoutePlan.create(name: "routeC", month: "March")
 RoutePlan.create(name: "routeD", month: "April")
 
+puts "seeding users"
+User.create(username: "daisy", email: "daisy@gmail.com", role: "manager", location: "pangani" , password: "12345678")
+
 puts "done seeding"

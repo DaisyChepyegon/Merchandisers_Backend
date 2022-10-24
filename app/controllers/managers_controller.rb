@@ -18,16 +18,16 @@ class ManagersController < ApplicationController
   # POST /managers
   def create
   
-    # manager = Manager.create!(manager_params)
-    # render json: manager, status: :created, location: manager
-
     manager = Manager.create(manager_params)
-    if manager.valid?
-      session[:manager_id] ||= manager_id
-        app_response(status_code: 201, message: "Account created successfully", body: manager)
-    else
-        app_response(status_code: 422, message: "Invalid input", body: manager.errors.full_messages)
-    end
+    render json: manager, status: :created
+
+    # manager = Manager.create(manager_params)
+    # if manager.valid?
+    #   session[:manager_id] = manager.id
+    #     app_response(status_code: 201, message: "Account created successfully", body: manager)
+    # else
+    #     app_response(status_code: 422, message: "Invalid input", body: manager.errors.full_messages)
+    # end
 
   end
 
@@ -55,7 +55,7 @@ class ManagersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def manager_params
-      params.require(:manager).permit(:username, :email, :password, :password_confirmation)
+      params.require(:manager).permit(:username, :email, :password, :location)
     end
 
     def render_not_found_response

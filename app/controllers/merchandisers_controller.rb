@@ -19,15 +19,15 @@ class MerchandisersController < ApplicationController
   end
 
   # POST /merchandisers
-  def create
-   merchandiser = Merchandiser.create(merchandiser_params)
-    if merchandiser.valid?
-      session[:merchandiser_id] ||= merchandiser_id
-        app_response(status_code: 201, message: "Account created successfully", body:merchandiser)
-    else
-        app_response(status_code: 422, message: "Invalid input", body:merchandiser.errors.full_messages)
-    end
-  end
+  # def create
+  #  merchandiser = Merchandiser.create(merchandiser_params)
+  #   if merchandiser.valid?
+  #     session[:merchandiser_id] = merchandiser.id
+  #       app_response(status_code: 201, message: "Account created successfully", body:merchandiser)
+  #   else
+  #       app_response(status_code: 422, message: "Invalid input", body:merchandiser.errors.full_messages)
+  #   end
+  # end
 
 
   # PATCH/PUT /merchandisers/1
@@ -55,7 +55,7 @@ class MerchandisersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def merchandiser_params
 
-      params.require(:merchandiser).permit(:username, :email,  :password, :password_confirmation)
+      params.require(:merchandiser).permit(:username, :email,  :password)
     end
 
     def render_not_found_response
