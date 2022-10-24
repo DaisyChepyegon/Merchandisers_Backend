@@ -1,7 +1,22 @@
 class ApplicationController < ActionController::API
-  include ActionController::Cookies
+  # include ActionController::Cookies
   
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+
+  def authorize_request
+    header = request.headers['Authorization']
+    header = header.split('').last if header
+    begin
+        @decoded = JsonWebToken.decode(header)
+        @user = User.find(@decoded[:user_id])
+        
+    rescue ActiveRecord::RecordNotFound => e
+        render json: { errors: e.message }, status: :unauthorized
+    rescue JWT::DecodeError => e
+        render json: {errors: e.message}, status: :unauthorized
+    end
+      
+  end
 
 
 private
@@ -25,5 +40,7 @@ def app_response(status_code: 200, message: "Success", body: nil, serializer: ni
       },status: status_code
   end
 end
+
+
 
 end
