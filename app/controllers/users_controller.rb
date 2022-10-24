@@ -1,47 +1,40 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show update destroy ]
+  def login
+    @user = Merchandiser.find_by_email(user_params[:email]) || Manager.find_by_email(user_params[:email]) 
 
-  # GET /users
-  def index
-    @users = User.all
-
-    render json: @users
-  end
-
-  # GET /users/1
-  def show
-    render json: @user
-  end
-
-  # POST /users
-  def create
-    @user = User.create!(user_params)
-    render json: @user, status: :created, location: @user
-   
-  end
-
-  # PATCH/PUT /users/1
-  def update
-    if @user.update(user_params)
-      render json: @user
+    if @user && @user.authenticate(user_params[:password])
+        token = encode_token({user_id: @user.id})
+        render json: {user: @user, token: token}, status: :ok
     else
-      render json: @user.errors, status: :unprocessable_entity
-    end
-  end
+        render json: {error:"Invalid Email or password"}, status: :unprocessable_entity  
+    end    
+end
 
-  # DELETE /users/1
-  def destroy
-    @user.destroy
-  end
+def update
+    @user = Merchandiser.find_by_email(user_params[:email]) || Manager.find_by_email(user_params[:email]) 
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+    if @user && @user.update!(user_params)
+        render json: @user, status: :ok
+    else
+        render json: {error:"Account not found! try creating new one"}, status: :not_found
+    end    
+end
 
-    # Only allow a list of trusted parameters through.
-    def user_params
-      params.require(:user).permit(:username, :email, :role, :password, :password_confirmation, :location)
+
+def destroy
+    decode_token = decode_token()
+    if decode_token
+        user_id = decode_token[0]['user_id']
+        puts user_id
+        @user = Merchandiser.find_by_id(user_id) ||  Manager.find_by_id(user_id) 
     end
+   render json: @user
+end    
+
+private
+
+def user_params
+    params.permit(:email, :password)
+end
+
 end

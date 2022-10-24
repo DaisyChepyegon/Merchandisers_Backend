@@ -14,14 +14,14 @@ Merchandiser.create(username: "Jasmine Hogan", image: "https://images.unsplash.c
 Merchandiser.create(username: "Kenneth R. Wiley", image: "https://images.unsplash.com/photo-1531727991582-cfd25ce79613?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YmxhY2slMjBwZW9wbGUlMjBmYWNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60", email: "kenneth@gmail.com", phone_number: 790000000,  password_digest: "1234567", location: "Roysambu", route_plan_id:4)
 
 puts 'seeding manager'
-Manager.create(username: "Joseph K. Williams", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlJTIwZmFjZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=700&q=60", email: "joseph@gmail.com", phone_number: "0712 345 000", password_digest: "1234a", location: "Moi Avenue")
-Manager.create(username: "Nathaniel A. Longoria", image: "https://images.unsplash.com/photo-1602133187081-4874fdbd555c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGFzc3BvcnQlMjBwaG90b3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=700&q=60", email: "nathaniel@gmail.com", phone_number: "0712 678 000", password_digest: "1234b", location: "Tom Mboya Street")
+Manager.create(username: "Joseph K. Williams", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cGVvcGxlJTIwZmFjZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=700&q=60", email: "joseph@gmail.com", phone_number: 712345000, password_digest: "1234a", location: "Moi Avenue")
+Manager.create(username: "Nathaniel A. Longoria", image: "https://images.unsplash.com/photo-1602133187081-4874fdbd555c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGFzc3BvcnQlMjBwaG90b3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=700&q=60", email: "nathaniel@gmail.com", phone_number: 712678000, password_digest: "1234b", location: "Tom Mboya Street")
 
 puts "seeding outlet"
 Outlet.create(name: "Naivas Moi Avenue", location:"Development House, Moi Avenue", merchandiser_id: 1, route_plan_id:1 )
 Outlet.create(name: "Carrefour Mega", location:"Carrefour Mega", merchandiser_id: 1, route_plan_id:1)
-Outlet.create(name: "Chandarana Foodplus Supermarkets Ngara", location:"Parklands/Highridge", merchandiser_id: 2, route_plan_id:2)
-Outlet.create(name: "Mathai Supermarket Ltd", location:"Ronald Ngala St · In NNUS Bus Service", merchandiser_id: 2, route_plan_id:2)
+Outlet.create(name: "Chandarana Foodplus Supermarkets Ngara", location:"Parklands/Highridge", merchandiser_id: 1, route_plan_id:2)
+Outlet.create(name: "Mathai Supermarket Ltd", location:"Ronald Ngala St · In NNUS Bus Service", merchandiser_id: 1, route_plan_id:2)
 
 puts "seeding routeplan"
 RoutePlan.create(name: "routeA", month: "Jan")
@@ -29,7 +29,7 @@ RoutePlan.create(name: "routeB", month: "Feb")
 RoutePlan.create(name: "routeC", month: "March")
 RoutePlan.create(name: "routeD", month: "April")
 
-puts "seeding users"
-User.create(username: "daisy", email: "daisy@gmail.com", role: "manager", location: "pangani" , password: "12345678")
+# puts "seeding users"
+# User.create(username: "daisy", email: "daisy@gmail.com", role: "manager", location: "pangani" , password: "12345678")
 
 puts "done seeding"
