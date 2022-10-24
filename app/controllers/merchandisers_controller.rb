@@ -20,19 +20,12 @@ class MerchandisersController < ApplicationController
 
   # POST /merchandisers
   def create
-    merchandiser = Merchandiser.create!(merchandiser_params)
-    # render json: merchandiser, status: :created
-    if  merchandiser.valid?
-        session[:merchandiser_id] =  merchandiser.id
-        render json: {
-            status: :created,
-            merchandiser: merchandiser
-        }
+   merchandiser = Merchandiser.create(merchandiser_params)
+    if merchandiser.valid?
+        create_merchandiser_session(merchandiser.id)
+        app_response(status_code: 201, message: "Account created successfully", body:merchandiser)
     else
-        render json: {
-            status: 500,
-            errors: merchandiser.errors.full_messages
-        }
+        app_response(status_code: 422, message: "Invalid input", body:merchandiser.errors.full_messages)
     end
   end
 
@@ -56,6 +49,10 @@ class MerchandisersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_merchandiser
      Merchandiser.find(params[:id])
+    end
+
+    def create_merchandiser_session(merchandiser.id)
+      session[:merchandiser_id] ||= merchandiser_id
     end
 
     # Only allow a list of trusted parameters through.
