@@ -18,6 +18,7 @@ class MerchandisersSessionsController < ApplicationController
       private
       def sessions_params
       params.require(:merchandiser).permit(:username, :email, :password)
+      end
  
       def delete_merchandiser_session
         session.delete :merchandiser_id
@@ -26,4 +27,5 @@ class MerchandisersSessionsController < ApplicationController
       def create_merchandiser_session(merchandiser_id)
         session[:merchandiser_id] ||= merchandiser_id
       end
-  end
+
+end
