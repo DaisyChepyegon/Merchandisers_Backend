@@ -22,7 +22,7 @@ class MerchandisersController < ApplicationController
   def create
    merchandiser = Merchandiser.create(merchandiser_params)
     if merchandiser.valid?
-        create_merchandiser_session(merchandiser.id)
+        create_merchandiser_session(merchandiser_id)
         app_response(status_code: 201, message: "Account created successfully", body:merchandiser)
     else
         app_response(status_code: 422, message: "Invalid input", body:merchandiser.errors.full_messages)
