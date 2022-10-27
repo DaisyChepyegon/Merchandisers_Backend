@@ -19,8 +19,9 @@ class MerchandisersController < ApplicationController
   end
 
   def create
-    merchandiser = Merchandiser.create!(merchandiser_params)
-    render json: merchandiser, status: :created
+    @user =Merchandiser.create!(merchandiser_params)
+    token = encode_token({merchandiser_id: @user.id})
+    render json: {merchandiser: @user, token: token}, status: :ok
 
   end
 
@@ -51,7 +52,7 @@ class MerchandisersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def merchandiser_params
 
-      params.permit(:username, :email,  :password, :phone_number, :image, :location)
+      params.permit(:role, :email,  :password, :password_confirmation)
     end
 
     def render_not_found_response
