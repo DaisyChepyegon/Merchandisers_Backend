@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   resources :route_plans
 
   ## managers signup routes
-  post '/login', to: 'users#login'
-  post '/signup', to: 'managers#create'
-  post '/signup', to: 'merchandisers#create'
+  post '/login-manager', to: 'users#login_manager'
+  post '/login-merch', to: 'users#login_merch'
+  post '/signup-manager', to: 'managers#create'
+  post '/signup-merch', to: 'merchandisers#create'
 
 
  
