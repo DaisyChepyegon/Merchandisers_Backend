@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_123059) do
   create_table "managers", force: :cascade do |t|
     t.string "username"
     t.string "image"
+    t.string "role"
     t.integer "phone_number"
     t.string "email"
     t.string "password_digest"
@@ -28,6 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_123059) do
   create_table "merchandisers", force: :cascade do |t|
     t.string "username"
     t.string "image"
+    t.string "role"
     t.integer "phone_number"
     t.string "email"
     t.string "password_digest"

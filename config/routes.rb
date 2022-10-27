@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
   ## managers signup routes
   post '/login', to: 'users#login'
+  post '/signup', to: 'managers#create'
+  post '/signup', to: 'merchandisers#create'
+
 
  
    
