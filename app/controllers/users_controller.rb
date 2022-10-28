@@ -1,10 +1,21 @@
 class UsersController < ApplicationController
-  def login
-    @user = Merchandiser.find_by_email(user_params[:email]) || Manager.find_by_email(user_params[:email]) 
+  def login_merch
+    @user = Merchandiser.find_by_email(user_params[:email])
 
     if @user && @user.authenticate(user_params[:password])
         token = encode_token({user_id: @user.id})
-        render json: {user: @user, token: token}, status: :ok
+        render json: {user: @user, token: token, role: 'merch'}, status: :ok
+    else
+        render json: {error:"Invalid Email or password"}, status: :unprocessable_entity  
+    end    
+end
+
+def login_manager
+    @user = Manager.find_by_email(user_params[:email]) 
+
+    if @user && @user.authenticate(user_params[:password])
+        token = encode_token({user_id: @user.id})
+        render json: {user: @user, token: token, role: 'manager'}, status: :ok
     else
         render json: {error:"Invalid Email or password"}, status: :unprocessable_entity  
     end    
