@@ -7,7 +7,7 @@ class MerchandisersController < ApplicationController
 
     merchandiser = Merchandiser.all
 
-    render json: merchandiser
+    render json: merchandiser, include: :route_plans
 
   end
 
