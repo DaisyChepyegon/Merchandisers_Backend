@@ -54,7 +54,7 @@ class ManagersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def manager_params
-      params.permit(:role, :email,  :password, :password_confirmation)
+      params.permit(:role, :email,  :password, :password_confirmation, :username, :location, :image, :phone_number)
     end
 
     def render_not_found_response

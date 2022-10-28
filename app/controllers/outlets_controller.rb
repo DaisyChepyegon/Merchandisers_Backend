@@ -6,7 +6,7 @@ class OutletsController < ApplicationController
    def index
     outlets = Outlet.all
  
-     render json: outlets
+     render json: outlets, include: :route_plans
    end
  
    # GET /outlets/1

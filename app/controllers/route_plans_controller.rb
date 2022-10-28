@@ -5,7 +5,7 @@ class RoutePlansController < ApplicationController
    # GET /route_plans
    def index
     route_plans = RoutePlan.all
-    render json:route_plans
+    render json:route_plans, include: :outlets
    end
  
    # GET /route_plans/1
