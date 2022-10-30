@@ -1,4 +1,4 @@
 class RoutePlanSerializer < ActiveModel::Serializer
-  attributes :id, :month, :name
-  belongs_to :outlet
+  attributes :id, :route_name, :merchandiser, :outlets, :location, :time
+  
 end
