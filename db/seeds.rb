@@ -24,10 +24,9 @@ Outlet.create(name: "Chandarana Foodplus Supermarkets Ngara", location:"Parkland
 Outlet.create(name: "Mathai Supermarket Ltd", location:"Ronald Ngala St · In NNUS Bus Service")
 
 puts "seeding routeplan"
-RoutePlan.create(name: "routeA", month: "Jan", outlet_id: 1, merchandiser_id: 1)
-RoutePlan.create(name: "routeB", month: "Feb", outlet_id: 1, merchandiser_id: 2)
-RoutePlan.create(name: "routeC", month: "March", outlet_id: 2, merchandiser_id: 3)
-RoutePlan.create(name: "routeD", month: "April", outlet_id: 2, merchandiser_id: 4)
+RoutePlan.create(route_name: "routeA",merchandiser: "Kyle M. Miller",outlets: "Naivas Moi Avenue, Mathai Supermarket Ltd",location: "Moi Avenue",time: "9am-3pm")
+RoutePlan.create(route_name: "routeB",merchandiser: "Laura K. Dean",outlets: "Carrefour Mega, Chandarana Foodplus Supermarkets Ngara", location: "Parklands",time: "9am-3pm")
+
 
 
 puts "done seeding"

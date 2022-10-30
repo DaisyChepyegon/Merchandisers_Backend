@@ -5,7 +5,7 @@ class RoutePlansController < ApplicationController
    # GET /route_plans
    def index
     route_plans = RoutePlan.all
-    render json:route_plans, include: :outlets
+    render json:route_plans
    end
  
    # GET /route_plans/1
@@ -20,14 +20,6 @@ class RoutePlansController < ApplicationController
     route_plan = RoutePlan.create!(route_plan_params)
 
     render json:route_plan, status: :created
-
-    # route_plan = RoutePlan.new(route_plan_params)
- 
-    #  if route_plan.save
-    #    render json:route_plan, status: :created, location:route_plan
-    #  else
-    #    render json:route_plan.errors, status: :unprocessable_entity
-    #  end
 
    end
  
@@ -53,7 +45,7 @@ class RoutePlansController < ApplicationController
  
      # Only allow a list of trusted parameters through.
      def route_plan_params
-       params.require(:route_plan).permit(:name, :month)
+       params.permit(:route_name, :merchandiser, :outlets, :location, :time)
      end
 
      def render_not_found_response

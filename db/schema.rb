@@ -46,10 +46,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_123059) do
   end
 
   create_table "route_plans", force: :cascade do |t|
-    t.string "name"
-    t.string "month"
-    t.integer "outlet_id"
-    t.integer "merchandiser_id"
+    t.string "route_name"
+    t.string "merchandiser"
+    t.string "outlets"
+    t.string "location"
+    t.string "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
