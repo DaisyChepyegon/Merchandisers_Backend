@@ -1,4 +1,4 @@
 class MerchandiserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :email, :image, :phone_number, :password_digest, :location
+  attributes :id, :username, :email, :image, :contact, :password_digest, :location
 
 end
