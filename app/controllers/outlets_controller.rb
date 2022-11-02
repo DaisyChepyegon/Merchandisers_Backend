@@ -46,7 +46,7 @@ class OutletsController < ApplicationController
  
      # Only allow a list of trusted parameters through.
      def outlet_params
-       params.permit(:name, :location)
+       params.permit(:name, :location, :longitude, :latitude)
      end
 
      def render_not_found_response

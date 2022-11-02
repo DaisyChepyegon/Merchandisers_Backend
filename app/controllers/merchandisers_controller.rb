@@ -7,8 +7,19 @@ class MerchandisersController < ApplicationController
 
     merchandiser = Merchandiser.all
 
-    render json: merchandiser, include: :route_plans
+    render json: merchandiser
 
+  end
+
+  def gps
+    merchandiser = Merchandiser.all
+
+    render json: merchandiser
+  end
+
+  def show_gps
+    merchandiser = set_merchandiser
+    render json: merchandiser
   end
 
   # GET /merchandisers/1
@@ -16,6 +27,11 @@ class MerchandisersController < ApplicationController
     merchandiser = set_merchandiser
     render json: merchandiser
    
+  end
+
+  def post_gps
+    merchant = Merchandiser.create(location_params)
+    render json: merchant, status: :created
   end
 
   def create
@@ -53,6 +69,10 @@ class MerchandisersController < ApplicationController
     def merchandiser_params
 
       params.permit(:role, :email,  :password, :password_confirmation,  :username, :location, :image, :contact)
+    end
+
+    def location_params
+      params.permit(:username, :longitude, :latitude)
     end
 
     def render_not_found_response

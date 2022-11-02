@@ -11,9 +11,11 @@ Rails.application.routes.draw do
   post '/signup-manager', to: 'managers#create'
   post '/signup-merch', to: 'merchandisers#create'
 
+  get "/locations", to: "merchandisers#gps"
+  get "/locations/:id", to: "merchandisers#show_gps"
+  post "/locations", to: "merchandisers#post_gps"
 
- 
-   
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
