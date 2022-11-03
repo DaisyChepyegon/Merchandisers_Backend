@@ -13,7 +13,6 @@ class MerchandisersController < ApplicationController
 
   def gps
     merchandiser = Merchandiser.all
-
     render json: merchandiser
   end
 
