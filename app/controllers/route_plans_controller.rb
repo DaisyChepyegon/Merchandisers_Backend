@@ -19,7 +19,7 @@ class RoutePlansController < ApplicationController
 
     route_plan = RoutePlan.create!(route_plan_params)
 
-    render json:route_plan, status: :created
+    render json: route_plan, status: :created
 
    end
  
