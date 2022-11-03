@@ -12,9 +12,9 @@ Rails.application.routes.draw do
   post '/signup-merch', to: 'merchandisers#create'
 
   get "/locations", to: "merchandisers#gps"
-  get "/locations/:id", to: "merchandisers#show_gps"
-  post "/locations", to: "merchandisers#post_gps"
-
+  patch "/locations/:id", to: "merchandisers#patch_gps"
+  
+  
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
