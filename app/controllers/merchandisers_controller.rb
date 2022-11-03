@@ -28,10 +28,24 @@ class MerchandisersController < ApplicationController
    
   end
 
+  def show
+    merchant = Merchandiser.create(location_params)
+    render json: merchant, status: :created
+  end
+
+
+  
   def post_gps
     merchant = Merchandiser.create(location_params)
     render json: merchant, status: :created
   end
+
+  def patch_gps
+    merchant = Merchandiser.find_by(id: params[:id])
+    merchant.update(latitude: merchandiser_gps_params[:latitude], longitude: merchandiser_gps_params[:longitude])
+    render json: merchant,status: :ok
+  end
+
 
   def create
     @user =Merchandiser.create!(merchandiser_params)
@@ -73,6 +87,12 @@ class MerchandisersController < ApplicationController
     def location_params
       params.permit(:username, :longitude, :latitude)
     end
+
+
+    def merchandiser_gps_params
+      params.permit(:longitude, :latitude)
+    end
+
 
     def render_not_found_response
       render json: { error: "Merchandiser not found" }, status: :not_found

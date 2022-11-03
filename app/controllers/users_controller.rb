@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
     if @user && @user.authenticate(user_params[:password])
         token = encode_token({user_id: @user.id})
-        render json: {user: @user, token: token, role: 'merch'}, status: :ok
+        render json: {user_id: @user.id, token: token, role: 'merch'}, status: :ok
     else
         render json: {error:"Invalid Email or password"}, status: :unprocessable_entity  
     end    
@@ -15,7 +15,7 @@ def login_manager
 
     if @user && @user.authenticate(user_params[:password])
         token = encode_token({user_id: @user.id})
-        render json: {user: @user, token: token, role: 'manager'}, status: :ok
+        render json: {user_id: @user.id, token: token, role: 'manager'}, status: :ok
     else
         render json: {error:"Invalid Email or password"}, status: :unprocessable_entity  
     end    
