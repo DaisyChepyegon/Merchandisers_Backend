@@ -67,7 +67,7 @@ class MerchandisersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def merchandiser_params
 
-      params.permit(:role, :email,  :password, :password_confirmation,  :username, :location, :image, :contact)
+      params.permit(:role, :email,  :password, :password_confirmation,  :username, :location, :image, :phone_number)
     end
 
     def location_params
